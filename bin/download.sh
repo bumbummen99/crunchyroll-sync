@@ -20,10 +20,17 @@ elif [ ! -f $SHOWS_FILE ]; then
   exit 1
 fi
 
+# Determine the correct ffmpeg preset
+FFMPEG_PRESET=h264-lossless
+if ffmpeg -hide_banner -encoders 2>/dev/null | grep -i nvenc &> /dev/null; then
+  FFMPEG_PRESET=h264-nvidia-lossless
+fi
+
 # Iterate the show urls
 while IFS="" read -r SHOW || [ -n "$SHOW" ]; do
   # Download the show
   crunchy archive \
+    --ffmpeg-preset $FFMPEG_PRESET \
     -a de-DE -a ja-JP \
     -s de-DE \
     -o "$DATA_DIR/{series_name}/Season {season_number}/{series_name} S{season_number}E{episode_number}.mkv" \
