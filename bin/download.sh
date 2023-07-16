@@ -16,9 +16,8 @@ if [ $CI ]; then
   fi
 # Local: The .shows file must be provided
 elif [ ! -f $SHOWS_FILE ]; then
-    echo "Could not find .shows file or SHOWS environment variable!"
-    exit 1
-  fi   
+  echo "Could not find .shows file or SHOWS environment variable!"
+  exit 1
 fi
 
 # Iterate the show urls
