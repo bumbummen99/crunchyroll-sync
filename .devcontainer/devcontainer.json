@@ -1,0 +1,18 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+    "name": "Crunchy-CLI Automation",
+    "build": {
+        "dockerfile": "docker/Dockerfile"
+    },
+    // Extend the Docker cli arguments and load local .env file
+    "runArgs": [
+        "--env-file",
+        ".devcontainer/.env"
+    ],
+    // Features to add to the dev container. More info: https://containers.dev/features.
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {},
+        "ghcr.io/devcontainers/features/git:1": {}
+    }
+}

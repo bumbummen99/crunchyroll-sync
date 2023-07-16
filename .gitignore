@@ -1,0 +1,8 @@
+# DotEnv
+.env
+
+# Shows
+.shows
+
+# Allow .example files
+!*.example
