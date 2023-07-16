@@ -28,11 +28,22 @@ fi
 
 # Iterate the show urls
 while IFS="" read -r SHOW || [ -n "$SHOW" ]; do
-  # Download the show
+  # Split folder name & url
+  IFS="/" read -ra SPLIT <<< "$SHOW"
+  FOLDER="${SPLIT[0]}"
+  URL="${SPLIT[1]}"
+
+  # Create "shadow" for files that already exist on the remote
+  # TODO
+
+  # Download the show and skip existing episodes
   crunchy archive \
     --ffmpeg-preset $FFMPEG_PRESET \
     -a de-DE -a ja-JP \
     -s de-DE \
-    -o "$DATA_DIR/{series_name}/Season {season_number}/{series_name} S{season_number}E{episode_number}.mkv" \
-    $SHOW
+    -o "$DATA_DIR/$FOLDER/Season {season_number}/{series_name} S{season_number}E{episode_number}.mkv" \
+    $URL
+
+  # Sync new files via SCP
+  # TODO
 done < $SHOWS_FILE
