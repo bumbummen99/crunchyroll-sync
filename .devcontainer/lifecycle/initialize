@@ -8,7 +8,7 @@ if [ ! -f $DEVCONTAINER_ENV_FILE ]; then
     cp "$DEVCONTAINER_ENV_FILE.example" $DEVCONTAINER_ENV_FILE
 
     # Check if we are on CodeSpaces
-    if [ $CODESPACE ]; then
+    if [ $CODESPACES ]; then
         # Clean the .env file in favour of CodeSpace secrets
         echo "" > $DEVCONTAINER_ENV_FILE
     fi
