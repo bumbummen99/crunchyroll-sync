@@ -1,0 +1,15 @@
+#/usr/bin/env bash
+
+DEVCONTAINER_ENV_FILE=".devcontainer/.env"
+
+# Check if the .env file exists
+if [ ! -f $DEVCONTAINER_ENV_FILE ]; then
+    # Copy the .env.example file
+    cp "$DEVCONTAINER_ENV_FILE.example" $DEVCONTAINER_ENV_FILE
+
+    # Check if we are on CodeSpaces
+    if [ $CODESPACE ]; then
+        # Clean the .env file in favour of CodeSpace secrets
+        echo "" > $DEVCONTAINER_ENV_FILE
+    fi
+fi
